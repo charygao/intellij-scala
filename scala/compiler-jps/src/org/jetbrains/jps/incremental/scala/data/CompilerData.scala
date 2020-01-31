@@ -127,7 +127,7 @@ object CompilerData extends CompilerDataFactory {
         Seq.empty
     }
 
-    val compilerPrefix = if (CompilerJars.hasDotty(files.map(_.file))) "dotty" else "scala"
+    val compilerPrefix = if (containsDotty(files.map(_.file))) "dotty" else "scala"
     for {
       library <- find(files, "scala-library")
       compiler <- find(files, s"$compilerPrefix-compiler")

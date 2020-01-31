@@ -13,6 +13,7 @@ import org.jetbrains.jps.incremental.scala.remote.Arguments
 import sbt.internal.inc.{AnalyzingCompiler, RawCompiler}
 import sbt.io.Path
 import xsbti.compile.{ClasspathOptionsUtil, ScalaInstance}
+import org.jetbrains.jps.incremental.scala.compilerVersion
 
 class ILoopWrapperFactoryHandler {
   import ILoopWrapperFactoryHandler._
@@ -134,7 +135,7 @@ object ILoopWrapperFactoryHandler {
   private val ILoopWrapper213Impl   = "ILoopWrapper213Impl"
 
   private def findScalaVersionIn(scalaInstance: ScalaInstance): String =
-    CompilerFactoryImpl.readScalaVersionIn(scalaInstance.loader).getOrElse("Undefined")
+    compilerVersion(scalaInstance.loader).getOrElse("Undefined")
 
   private def findContainingJar(clazz: Class[_]): Option[File] = {
     val resource = clazz.getResource(s"/${clazz.getName.replace('.', '/')}.class")

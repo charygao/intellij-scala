@@ -43,7 +43,7 @@ object SbtData {
     customPath.map(new File(_)).getOrElse(defaultDir)
   }
 
-  def from(classLoader: ClassLoader, pluginRoot: File, javaClassVersion: String): Either[String, SbtData] = {
+  def from(pluginRoot: File, javaClassVersion: String): Either[String, SbtData] = {
     Either.cond(pluginRoot.exists, pluginRoot,
       "sbt home directory does not exist: " + pluginRoot).flatMap { sbtHome =>
 

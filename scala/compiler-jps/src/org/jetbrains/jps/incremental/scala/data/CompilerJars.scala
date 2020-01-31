@@ -12,11 +12,5 @@ case class CompilerJars(library: File,
                         extra: Seq[File]) {
 
   def hasDotty: Boolean =
-    CompilerJars.hasDotty(extra)
-}
-
-object CompilerJars {
-
-  def hasDotty(files: Seq[File]): Boolean =
-    files.exists(_.getName.startsWith("dotty"))
+    containsDotty(extra)
 }
